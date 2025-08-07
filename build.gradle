@@ -141,26 +141,29 @@ repositories {
 
 allprojects {
     apply plugin: 'java'
-    apply plugin: 'net.minecraftforge.gradle'
 
     dependencies {
-        implementation(jarJar("com.ibm.async:asyncutil:${async_util_version}")) {
-            jarJar.ranged(it, "[${async_util_version},)")
-        }
-        implementation(jarJar("net.objecthunter:exp4j:${exp4j_version}")) {
-            jarJar.ranged(it, "[${exp4j_version},)")
-        }
+        compileOnly("com.ibm.async:asyncutil:${async_util_version}")
+        compileOnly("net.objecthunter:exp4j:${exp4j_version}")
         compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
-        implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {
-            jarJar.ranged(it, "[${mixinextras_version},)")
-        }
     }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    // libs
+    implementation(jarJar("com.ibm.async:asyncutil:${async_util_version}")) {
+        jarJar.ranged(it, "[${async_util_version},)")
+    }
+    implementation(jarJar("net.objecthunter:exp4j:${exp4j_version}")) {
+        jarJar.ranged(it, "[${exp4j_version},)")
+    }
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {
+        jarJar.ranged(it, "[${mixinextras_version},)")
+    }
 
     // modules
     jarJar(project(":c2me_base")) {

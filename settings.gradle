@@ -15,4 +15,3 @@ plugins {
 rootProject.name = 'c2me'
 
 include(":c2me_base")
-include(":tests")
