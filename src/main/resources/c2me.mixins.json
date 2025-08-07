@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.sjhub.c2mef.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "c2me.refmap.json",
+  "package": "com.ishland.c2me.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixinPriority": 1100,
   "mixins": [
   ],
   "client": [
@@ -12,6 +12,6 @@
     "defaultRequire": 1
   },
   "overwrites": {
-    "requireAnnotations": true
+    "conformVisibility": true
   }
 }
