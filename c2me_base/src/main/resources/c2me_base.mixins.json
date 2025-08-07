@@ -3,6 +3,7 @@
   "required": true,
   "package": "com.ishland.c2me.base.mixin",
   "plugin": "com.ishland.c2me.base.TheMixinPlugin",
+  "refmap": "c2me_base.refmap.json",
   "mixins": [
     "access.IAquiferSamplerFluidLevel",
     "access.IAtomicSimpleRandomDeriver",

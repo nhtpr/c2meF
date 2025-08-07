@@ -1,8 +1,11 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 buildscript {
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
@@ -13,9 +16,11 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'com.gradleup.shadow' version '8.3.6'
 }
 
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.gradleup.shadow'
 
 group = mod_group_id
 version = mod_version
@@ -137,6 +142,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    mavenCentral()
 }
 
 allprojects {
@@ -148,6 +154,8 @@ allprojects {
         compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     }
 }
+
+def moduleProjects = [':c2me_base']
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
@@ -166,9 +174,11 @@ dependencies {
     }
 
     // modules
-    jarJar(project(":c2me_base")) {
-        transitive = false
-        jarJar.ranged(it, "[*,)")
+    moduleProjects.each { moduleName ->
+        jarJar(project(moduleName)) {
+            transitive = false
+            jarJar.ranged(it, "[*,)")
+        }
     }
 }
 
@@ -190,8 +200,18 @@ tasks.named('processResources', ProcessResources).configure {
     }
 }
 
+moduleProjects.each { moduleName ->
+    compileJava.dependsOn "${moduleName}:build"
+    processResources.dependsOn "${moduleName}:build"
+}
+
+
 // Example for how to get properties into the manifest for reading at runtime.
 tasks.named('jar', Jar).configure {
+    moduleProjects.each { moduleName ->
+        dependsOn "${moduleName}:build"
+    }
+
     manifest {
         attributes(["Specification-Title"     : mod_id,
                     "Specification-Vendor"    : mod_authors,
@@ -208,4 +228,10 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+if (project.hasProperty('shadowJar')) {
+    moduleProjects.each { moduleName ->
+        shadowJar.dependsOn "${moduleName}:build"
+    }
 }

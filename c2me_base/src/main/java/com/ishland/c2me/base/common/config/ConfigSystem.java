@@ -3,6 +3,7 @@ package com.ishland.c2me.base.common.config;
 import com.electronwill.nightconfig.core.CommentedConfig;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.ishland.c2me.base.common.util.BooleanUtils;
+import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.forgespi.language.IModInfo;
@@ -98,7 +99,12 @@ public class ConfigSystem {
 
         public ConfigAccessor incompatibleMod(String modId, String predicate) {
             try {
-                final Optional<? extends IModInfo> optional = ModList.get().getModContainerById(modId).map(container -> container.getModInfo());
+                // SJhub start
+                if (ModList.get() == null) {
+                    return this;
+                }
+                // SJhub end
+                final Optional<? extends IModInfo> optional = ModList.get().getModContainerById(modId).map(ModContainer::getModInfo);
                 if (optional.isPresent()) {
                     final IModInfo modInfo = optional.get();
                     final ArtifactVersion version = modInfo.getVersion();
@@ -235,6 +241,12 @@ public class ConfigSystem {
         }
 
         private void findModDefinedIncompatibility() {
+            // SJhub start
+            if (ModList.get() == null) {
+                return;
+            }
+            try {
+            // SJhub end
             for (IModInfo modInfo : ModList.get().getMods()) {
                 Object incompatibilitiesValue = modInfo.getModProperties().get("c2me:incompatibleConfig");
                 if (incompatibilitiesValue instanceof java.util.List) {
@@ -249,6 +261,11 @@ public class ConfigSystem {
                     }
                 }
             }
+            // SJhub start
+            } catch (Throwable t) {
+                LOGGER.warn("Failed to check mod-defined incompatibilities, skipping", t);
+            }
+            // SJhub end
 
         }
 
