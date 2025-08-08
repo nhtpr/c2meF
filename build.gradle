@@ -166,7 +166,7 @@ allprojects {
     }
 }
 
-def moduleProjects = [':c2me_base', 'c2me_client_uncapvd']
+def moduleProjects = [':c2me_base', 'c2me_client_uncapvd', 'c2me_fixes_chunkio_threading_issues']
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"

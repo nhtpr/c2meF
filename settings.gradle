@@ -16,3 +16,4 @@ rootProject.name = 'c2me'
 
 include(":c2me_base")
 include(":c2me_client_uncapvd")
+include(":c2me_fixes_chunkio_threading_issues")
