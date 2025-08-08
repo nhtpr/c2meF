@@ -13,10 +13,20 @@ buildscript {
 }
 
 plugins {
+    id 'java-library'
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'com.gradleup.shadow' version '8.3.6'
+}
+
+@SuppressWarnings('unused')
+static def moduleDependencies(project, List<String> depNames) {
+    project.dependencies {
+        depNames.each {
+            api project.dependencies.project(path: ":$it", configuration: 'namedElements')
+        }
+    }
 }
 
 apply plugin: 'org.spongepowered.mixin'
@@ -147,6 +157,7 @@ repositories {
 
 allprojects {
     apply plugin: 'java'
+    apply plugin: 'java-library'
 
     dependencies {
         compileOnly("com.ibm.async:asyncutil:${async_util_version}")
@@ -155,7 +166,7 @@ allprojects {
     }
 }
 
-def moduleProjects = [':c2me_base']
+def moduleProjects = [':c2me_base', 'c2me_client_uncapvd']
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
