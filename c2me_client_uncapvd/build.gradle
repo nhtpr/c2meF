@@ -48,7 +48,7 @@ tasks.named('processResources', ProcessResources).configure {
                              forge_version       : forge_version, forge_version_range: forge_version_range,
                              loader_version_range: loader_version_range,
                              mod_id              : "c2me_client_uncapvd", mod_name: "Concurrent Chunk Management Engine (Client/Uncap View Distance)", mod_license: mod_license, mod_version: mod_version,
-                             mod_authors         : mod_authors, mod_description: "Concurrent Chunk Management Engine Base",]
+                             mod_authors         : mod_authors, mod_description: "Client-side module for modifying maximum view distance",]
 
     inputs.properties replaceProperties
 
