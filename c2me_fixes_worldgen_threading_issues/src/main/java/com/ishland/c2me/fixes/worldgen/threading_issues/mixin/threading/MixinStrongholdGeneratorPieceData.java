@@ -16,14 +16,14 @@ public class MixinStrongholdGeneratorPieceData implements XPieceDataExtension {
     private final ThreadLocal<Integer> generatedCountThreadLocal = ThreadLocal.withInitial(() -> 0);
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/StrongholdGenerator$PieceData;generatedCount:I", opcode = Opcodes.GETFIELD), require = 2)
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/StrongholdPieces$PieceWeight;placeCount:I", opcode = Opcodes.GETFIELD), require = 2)
     private int redirectGetGeneratedCount(StrongholdPieces.PieceWeight pieceData) {
         return this.generatedCountThreadLocal.get();
     }
 
     @SuppressWarnings("MixinAnnotationTarget")
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/StrongholdGenerator$PieceData;generatedCount:I", opcode = Opcodes.PUTFIELD), require = 0, expect = 0)
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/StrongholdPieces$PieceWeight;placeCount:I", opcode = Opcodes.PUTFIELD), require = 0, expect = 0)
     private void redirectSetGeneratedCount(StrongholdPieces.PieceWeight pieceData, int value) {
         if (value == 0) {
             generatedCountThreadLocal.remove();

@@ -16,14 +16,14 @@ public class MixinNetherFortressGeneratorPieceData implements XPieceDataExtensio
     private final ThreadLocal<Integer> generatedCountThreadLocal = ThreadLocal.withInitial(() -> 0);
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/NetherFortressGenerator$PieceData;generatedCount:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/NetherFortressPieces$PieceWeight;placeCount:I", opcode = Opcodes.GETFIELD))
     private int redirectGetGeneratedCount(NetherFortressPieces.PieceWeight pieceData) {
         return this.generatedCountThreadLocal.get();
     }
 
     @SuppressWarnings("MixinAnnotationTarget")
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/NetherFortressGenerator$PieceData;generatedCount:I", opcode = Opcodes.PUTFIELD), require = 0, expect = 0)
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/NetherFortressPieces$PieceWeight;placeCount:I", opcode = Opcodes.PUTFIELD), require = 0, expect = 0)
     private void redirectSetGeneratedCount(NetherFortressPieces.PieceWeight pieceData, int value) {
         if (value == 0) {
             generatedCountThreadLocal.remove();

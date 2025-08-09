@@ -18,49 +18,49 @@ public class MixinJungleTempleGenerator {
     private final AtomicBoolean placedTrap2Atomic = new AtomicBoolean();
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedMainChest:Z", opcode = Opcodes.PUTFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedMainChest:Z", opcode = Opcodes.PUTFIELD))
     private void redirectSetPlacedMainChest(JungleTemplePiece jungleTempleGenerator, boolean value) {
         this.placedMainChestAtomic.compareAndSet(false, value);
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedMainChest:Z", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedMainChest:Z", opcode = Opcodes.GETFIELD))
     private boolean redirectGetPlacedMainChest(JungleTemplePiece jungleTempleGenerator) {
         return this.placedMainChestAtomic.get();
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedHiddenChest:Z", opcode = Opcodes.PUTFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedHiddenChest:Z", opcode = Opcodes.PUTFIELD))
     private void redirectSetHiddenChest(JungleTemplePiece jungleTempleGenerator, boolean value) {
         this.placedHiddenChestAtomic.compareAndSet(false, value);
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedHiddenChest:Z", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedHiddenChest:Z", opcode = Opcodes.GETFIELD))
     private boolean redirectGetHiddenChest(JungleTemplePiece jungleTempleGenerator) {
         return this.placedHiddenChestAtomic.get();
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedTrap1:Z", opcode = Opcodes.PUTFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedTrap1:Z", opcode = Opcodes.PUTFIELD))
     private void redirectSetPlacedTrap1(JungleTemplePiece jungleTempleGenerator, boolean value) {
         this.placedTrap1Atomic.compareAndSet(false, value);
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedTrap1:Z", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedTrap1:Z", opcode = Opcodes.GETFIELD))
     private boolean redirectGetPlacedTrap1(JungleTemplePiece jungleTempleGenerator) {
         return this.placedTrap1Atomic.get();
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedTrap2:Z", opcode = Opcodes.PUTFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedTrap2:Z", opcode = Opcodes.PUTFIELD))
     private void redirectSetPlacedTrap2(JungleTemplePiece jungleTempleGenerator, boolean value) {
         this.placedTrap2Atomic.compareAndSet(false, value);
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/JungleTempleGenerator;placedTrap2:Z", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/JungleTemplePiece;placedTrap2:Z", opcode = Opcodes.GETFIELD))
     private boolean redirectGetPlacedTrap2(JungleTemplePiece jungleTempleGenerator) {
         return this.placedTrap2Atomic.get();
     }

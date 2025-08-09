@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 })
 public class MixinSodiumUserConfigCategories {
 
-    @Dynamic
+    @Dynamic // TODO?: check byte code
     @ModifyConstant(method = "lambda$general$0", constant = @Constant(intValue = 32), remap = false)
     private static int modifyMaxViewDistance(int value) {
         return Config.maxViewDistance;

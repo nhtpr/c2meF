@@ -99,7 +99,7 @@ public abstract class MixinChunkHolder {
     }
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ChunkHolder;combineSavingFuture(Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V"))
+    @Redirect(method = "*", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkHolder;updateChunkToSave(Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V"))
     private void synchronizeCombineSavingFuture(ChunkHolder holder, CompletableFuture<? extends Either<? extends ChunkAccess, ChunkHolder.ChunkLoadingFailure>> then, String thenDesc) {
         synchronized (this) {
             this.updateChunkToSave(then.exceptionally(unused -> null), thenDesc);

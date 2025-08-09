@@ -38,7 +38,7 @@ public abstract class MixinServerChunkManager implements ISyncLoadManager {
     private volatile long syncLoadNanos = 0;
 
     @Dynamic
-    @Redirect(method = {"getChunk", "getChunkBlocking"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerChunkManager$MainThreadExecutor;runTasks(Ljava/util/function/BooleanSupplier;)V"), require = 0)
+    @Redirect(method = {"getChunk", "getChunkBlocking"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerChunkCache$MainThreadExecutor;managedBlock(Ljava/util/function/BooleanSupplier;)V"), require = 0)
     private void beforeAwaitChunk(ServerChunkCache.MainThreadExecutor instance, BooleanSupplier supplier, int x, int z, ChunkStatus leastStatus, boolean create) {
         if (Thread.currentThread() != this.mainThread || supplier.getAsBoolean()) return;
 

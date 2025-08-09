@@ -27,14 +27,14 @@ public abstract class MixinDesertTempleGenerator {
 
     @Dynamic
     @SuppressWarnings({"InvalidInjectorMethodSignature", "RedundantSuppression"})
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/DesertTempleGenerator;hasPlacedChest:[Z", opcode = Opcodes.GETFIELD, args = "array=set"))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/DesertPyramidPiece;hasPlacedChest:[Z", opcode = Opcodes.GETFIELD, args = "array=set"))
     private void redirectSetHasPlacedChest(boolean[] array, int index, boolean value) {
         this.hasPlacedChestAtomic.compareAndSet(index, false, value);
     }
 
     @Dynamic
     @SuppressWarnings({"InvalidInjectorMethodSignature", "RedundantSuppression"})
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/DesertTempleGenerator;hasPlacedChest:[Z", opcode = Opcodes.GETFIELD, args = "array=get"))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/DesertPyramidPiece;hasPlacedChest:[Z", opcode = Opcodes.GETFIELD, args = "array=get"))
     private boolean redirectGetHasPlacedChest(boolean[] array, int index) {
         final Boolean aBoolean = this.hasPlacedChestAtomic.get(index);
         return aBoolean != null ? aBoolean : false;
