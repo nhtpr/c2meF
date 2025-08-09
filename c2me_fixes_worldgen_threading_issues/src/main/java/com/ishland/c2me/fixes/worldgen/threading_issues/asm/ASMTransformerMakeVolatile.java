@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+// TODO: CHANGE TO FORGE MAPPINGS
 public class ASMTransformerMakeVolatile {
 
     static final Logger LOGGER = LoggerFactory.getLogger("C2ME (c2me-fixes-worldgen-threading-issues) ASM Transformer");
