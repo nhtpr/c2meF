@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class MixinWoodlandMansionGeneratorMansionParameters {
 
     @SuppressWarnings("UnresolvedMixinReference")
-    @Redirect(method = "<init>", at = @At(value = "NEW", target = "net/minecraft/structure/WoodlandMansionGenerator$FlagMatrix"))
+    @Redirect(method = "<init>", at = @At(value = "NEW", target = "net/minecraft/world/level/levelgen/structure/structures/WoodlandMansionPieces$SimpleGrid"))
     private WoodlandMansionPieces.SimpleGrid redirectNewMatrix(int n, int m, int fallback) {
         return new ConcurrentFlagMatrix(n, m, fallback);
     }

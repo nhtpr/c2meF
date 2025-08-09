@@ -18,17 +18,17 @@ public class MixinStructure {
     @Mutable
     @Shadow
     @Final
-    private List<StructureTemplate.Palette> blockInfoLists;
+    private List<StructureTemplate.Palette> palettes;
 
     @Mutable
     @Shadow
     @Final
-    private List<StructureTemplate.StructureEntityInfo> entities;
+    private List<StructureTemplate.StructureEntityInfo> entityInfoList;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void onInit(CallbackInfo ci) {
-        this.blockInfoLists = Collections.synchronizedList(blockInfoLists);
-        this.entities = Collections.synchronizedList(entities);
+        this.palettes = Collections.synchronizedList(palettes);
+        this.entityInfoList = Collections.synchronizedList(entityInfoList);
     }
 
 }

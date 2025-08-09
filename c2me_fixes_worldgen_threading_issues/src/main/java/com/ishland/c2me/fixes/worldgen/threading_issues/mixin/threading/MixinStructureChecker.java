@@ -27,10 +27,10 @@ import net.minecraft.world.level.levelgen.structure.StructureCheck;
 public class MixinStructureChecker {
 
     @Mutable
-    @Shadow @Final private Long2ObjectMap<Object2IntMap<Structure>> cachedStructuresByChunkPos;
+    @Shadow @Final private Long2ObjectMap<Object2IntMap<Structure>> loadedChunks;
 
     @Mutable
-    @Shadow @Final private Map<Structure, Long2BooleanMap> generationPossibilityByStructure;
+    @Shadow @Final private Map<Structure, Long2BooleanMap> featureChecks;
 
     @Unique
     private Object mapMutex = new Object();
@@ -38,11 +38,11 @@ public class MixinStructureChecker {
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void onInit(CallbackInfo info) {
         this.mapMutex = new Object();
-        this.cachedStructuresByChunkPos = Long2ObjectMaps.synchronize(this.cachedStructuresByChunkPos);
-        this.generationPossibilityByStructure = Object2ObjectMaps.synchronize(new Object2ObjectOpenHashMap<>(), this.mapMutex);
+        this.loadedChunks = Long2ObjectMaps.synchronize(this.loadedChunks);
+        this.featureChecks = Object2ObjectMaps.synchronize(new Object2ObjectOpenHashMap<>(), this.mapMutex);
     }
 
-    @Redirect(method = "cache(JLit/unimi/dsi/fastutil/objects/Object2IntMap;)V", at = @At(value = "INVOKE", target = "Ljava/util/Collection;forEach(Ljava/util/function/Consumer;)V"))
+    @Redirect(method = "storeFullResults", at = @At(value = "INVOKE", target = "Ljava/util/Collection;forEach(Ljava/util/function/Consumer;)V"))
     private void redirectForEach(Collection<Long2BooleanMap> instance, Consumer<Long2BooleanMap> consumer) {
         //noinspection SynchronizeOnNonFinalField
         synchronized (this.mapMutex) {

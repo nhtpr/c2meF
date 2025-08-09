@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(StrongholdPieces.StairsDown.class)
 public class MixinStrongholdGeneratorSpiralStaircase {
 
-    @Redirect(method = "fillOpenings", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/StrongholdGenerator;activePieceType:Ljava/lang/Class;", opcode = Opcodes.PUTSTATIC))
+    @Redirect(method = "addChildren", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/structures/StrongholdPieces;imposedPiece:Ljava/lang/Class;", opcode = Opcodes.PUTSTATIC))
     private void redirectGetActivePieceType(Class<? extends StrongholdPieces.StrongholdPiece> value) {
         IStrongholdGenerator.Holder.INSTANCE.getActivePieceTypeThreadLocal().set(value);
     }

@@ -16,7 +16,7 @@ public class MixinStructureStart {
     private final AtomicInteger referencesAtomic = new AtomicInteger();
 
     @Dynamic
-    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/structure/StructureStart;references:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "*", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/StructureStart;references:I", opcode = Opcodes.GETFIELD))
     private int redirectGetReferences(StructureStart structureStart) {
         return referencesAtomic.get();
     }
@@ -26,7 +26,7 @@ public class MixinStructureStart {
      * @reason atomic operation
      */
     @Overwrite
-    public void incrementReferences() {
+    public void addReference() {
         this.referencesAtomic.incrementAndGet();
     }
 
