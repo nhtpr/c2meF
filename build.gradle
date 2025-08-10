@@ -163,6 +163,14 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'java-library'
 
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'ArclightPowered'
+            url = 'https://maven.izzel.io/releases'
+        }
+    }
+
     dependencies {
         compileOnly("com.ibm.async:asyncutil:${async_util_version}")
         compileOnly("net.objecthunter:exp4j:${exp4j_version}")
