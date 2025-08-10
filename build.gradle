@@ -153,6 +153,10 @@ repositories {
     //     dir 'libs'
     // }
     mavenCentral()
+    maven {
+        name = 'ArclightPowered'
+        url = 'https://maven.izzel.io/releases'
+    }
 }
 
 allprojects {
@@ -163,6 +167,7 @@ allprojects {
         compileOnly("com.ibm.async:asyncutil:${async_util_version}")
         compileOnly("net.objecthunter:exp4j:${exp4j_version}")
         compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
+        compileOnly("io.izzel.arclight:mixin-tools:${mixin_tools_version}")
     }
 }
 
@@ -188,6 +193,10 @@ dependencies {
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {
         jarJar.ranged(it, "[${mixinextras_version},)")
+    }
+    implementation(jarJar("io.izzel.arclight:mixin-tools:${mixin_tools_version}")) {
+        jarJar.ranged(it, "[${mixin_tools_version},)")
+        transitive = false
     }
 
     // modules
