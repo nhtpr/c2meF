@@ -3,6 +3,7 @@
   "required": true,
   "package": "com.ishland.c2me.fixes.worldgen.threading_issues.mixin",
   "plugin": "com.ishland.c2me.fixes.worldgen.threading_issues.MixinPlugin",
+  "refmap": "c2me_fixes_worldgen_threading_issues.refmap.json",
   "mixins": [
     "asm.MineshaftPieces$MineShaftCorridorASM",
     "asm.NetherFortressPieces$CastleSmallCorridorLeftTurnPieceASM",
