@@ -193,7 +193,8 @@ def moduleProjects = [
         ':c2me_opts_chunk_access',
         ':c2me_opts_chunkio',
         ':c2me_opts_math',
-        ':c2me_opts_scheduling'
+        ':c2me_opts_scheduling',
+        ':c2me_opts_worldgen_general'
 ]
 
 dependencies {
