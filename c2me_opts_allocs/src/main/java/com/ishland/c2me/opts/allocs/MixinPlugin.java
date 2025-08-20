@@ -7,9 +7,11 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 public class MixinPlugin extends ModuleMixinPlugin {
 
+    // TODO: find better way then Modlist.get()
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!super.shouldApplyMixin(targetClassName, mixinClassName)) return false;
+        if (ModList.get() == null) return true;
 
         if (mixinClassName.equals("com.ishland.c2me.opts.allocs.mixin.MixinNbtCompound") ||
                 mixinClassName.equals("com.ishland.c2me.opts.allocs.mixin.MixinNbtCompound1"))

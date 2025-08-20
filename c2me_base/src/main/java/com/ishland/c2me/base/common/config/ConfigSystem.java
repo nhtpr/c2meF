@@ -97,6 +97,7 @@ public class ConfigSystem {
             return this;
         }
 
+        // TODO: find better way then Modlist.get()
         public ConfigAccessor incompatibleMod(String modId, String predicate) {
             try {
                 // SJhub start
