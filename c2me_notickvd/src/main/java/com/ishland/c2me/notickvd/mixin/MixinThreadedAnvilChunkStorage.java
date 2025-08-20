@@ -77,17 +77,19 @@ public abstract class MixinThreadedAnvilChunkStorage {
     }
 
     // private static synthetic method_20582(Lnet/minecraft/world/chunk/Chunk;)Z
-    @Dynamic
-    @Inject(method = "lambda$saveAllChunks$11", at = @At("RETURN"), cancellable = true) // TODO lambda expression of the 1st filter "chunk instanceof ReadOnlyChunk || chunk instanceof WorldChunk"
-    private static void onSaveFilter1(ChunkAccess chunk, CallbackInfoReturnable<Boolean> cir) {
-        if (true) return;
-        if (chunk instanceof LevelChunk worldChunk) {
-            final ServerLevel serverWorld = (ServerLevel) worldChunk.getLevel();
-            final IServerChunkManager serverChunkManager = (IServerChunkManager) serverWorld.getChunkSource();
-            final IChunkTicketManager ticketManager =
-                    (IChunkTicketManager) serverChunkManager.getTicketManager();
-            cir.setReturnValue(cir.getReturnValueZ() && !ticketManager.getNoTickOnlyChunks().contains(chunk.getPos().toLong()));
-        }
-    }
+    // SJhub start - i don't need this
+//    @Dynamic
+//    @Inject(method = "lambda$saveAllChunks$11", at = @At("RETURN"), cancellable = true) // TODO lambda expression of the 1st filter "chunk instanceof ReadOnlyChunk || chunk instanceof WorldChunk"
+//    private static void onSaveFilter1(ChunkAccess chunk, CallbackInfoReturnable<Boolean> cir) {
+//        if (true) return;
+//        if (chunk instanceof LevelChunk worldChunk) {
+//            final ServerLevel serverWorld = (ServerLevel) worldChunk.getLevel();
+//            final IServerChunkManager serverChunkManager = (IServerChunkManager) serverWorld.getChunkSource();
+//            final IChunkTicketManager ticketManager =
+//                    (IChunkTicketManager) serverChunkManager.getTicketManager();
+//            cir.setReturnValue(cir.getReturnValueZ() && !ticketManager.getNoTickOnlyChunks().contains(chunk.getPos().toLong()));
+//        }
+//    }
+    // SJhub end - i don't need this
 
 }
