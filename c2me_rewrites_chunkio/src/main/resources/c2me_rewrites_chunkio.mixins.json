@@ -1,0 +1,13 @@
+{
+  "parent": "c2me.mixins.json",
+  "required": true,
+  "package": "com.ishland.c2me.rewrites.chunkio.mixin",
+  "plugin": "com.ishland.c2me.base.common.ModuleMixinPlugin",
+  "refmap": "c2me_rewrites_chunkio.refmap.json",
+  "mixins": [
+    "MixinEntityChunkDataAccess",
+    "MixinSerializingRegionBasedStorage",
+    "MixinStorageIoWorker",
+    "MixinVersionedChunkStorage"
+  ]
+}
