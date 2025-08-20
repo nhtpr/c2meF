@@ -26,7 +26,7 @@ public class MixinThreadedAnvilChunkStorage {
     @Shadow @Final private static Logger LOGGER;
 
     @Dynamic
-    @Inject(method = "protoChunkToFullChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/chunk/LevelChunk;runPostLoad()V"), cancellable = false) // SJhub - forge gaps?
+    @Inject(method = "m_214854_", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/chunk/LevelChunk;runPostLoad()V"), cancellable = false)
     // lambda expression in convertToFullChunk
     private void afterLoadToWorld(ChunkHolder chunkHolder, ChunkAccess protoChunk, CallbackInfoReturnable<CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>> cir) {
         if (this.entitiesInLevel.contains(chunkHolder.getPos().toLong()))
