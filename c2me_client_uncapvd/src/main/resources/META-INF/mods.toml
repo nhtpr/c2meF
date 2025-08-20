@@ -15,7 +15,7 @@ license="${mod_license}"
     mandatory=true
     versionRange="${forge_version_range}"
     ordering="NONE"
-    side="BOTH"#
+    side="BOTH"
 
 [[dependencies."${mod_id}"]]
     modId="minecraft"
