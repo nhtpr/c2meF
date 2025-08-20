@@ -12,14 +12,14 @@ import org.spongepowered.asm.mixin.Shadow;
 public class WoodlandMansionPieces$PlacementDataASM {
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     public Rotation rotation;
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     public BlockPos position;
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     public String wallType;
 }

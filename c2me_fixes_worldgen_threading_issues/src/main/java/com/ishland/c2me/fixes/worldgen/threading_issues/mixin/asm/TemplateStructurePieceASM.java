@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.Shadow;
 public class TemplateStructurePieceASM {
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     protected BlockPos templatePosition;
 }

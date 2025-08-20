@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.Shadow;
 public class OceanMonumentPieces$MonumentBuildingASM {
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     private OceanMonumentPieces.RoomDefinition sourceRoom;
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     private OceanMonumentPieces.RoomDefinition coreRoom;
 }

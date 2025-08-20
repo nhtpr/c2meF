@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.Shadow;
 public class SwampHutPieceASM {
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     private boolean spawnedWitch;
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     private boolean spawnedCat;
 }

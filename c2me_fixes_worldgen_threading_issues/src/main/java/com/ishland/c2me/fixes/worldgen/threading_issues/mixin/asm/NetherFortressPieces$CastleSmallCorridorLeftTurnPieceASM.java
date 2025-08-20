@@ -10,6 +10,6 @@ import org.spongepowered.asm.mixin.Shadow;
 public class NetherFortressPieces$CastleSmallCorridorLeftTurnPieceASM {
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     private boolean isNeedingChest;
 }

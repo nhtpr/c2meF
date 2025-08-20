@@ -12,11 +12,11 @@ import javax.annotation.Nullable;
 public class StrongholdPieces$StartPieceASM {
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     public StrongholdPieces.PieceWeight previousPiece;
 
     @Shadow
-    @TransformAccess(Opcodes.ACC_VOLATILE)
+    @TransformAccess(Opcodes.ACC_PUBLIC | Opcodes.ACC_VOLATILE)
     @Nullable
     public StrongholdPieces.PortalRoom portalRoomPiece;
 }
