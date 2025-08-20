@@ -2,9 +2,6 @@ package com.ishland.c2me.fixes.worldgen.threading_issues;
 
 import com.ishland.c2me.base.common.ModuleMixinPlugin;
 import com.ishland.c2me.fixes.worldgen.threading_issues.common.debug.SMAPPool;
-import io.izzel.arclight.common.mod.mixins.MixinProcessor;
-import io.izzel.arclight.common.mod.mixins.TransformAccessProcessor;
-import io.izzel.arclight.mixin.MixinTools;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,15 +10,7 @@ import org.spongepowered.asm.mixin.transformer.ext.Extensions;
 import org.spongepowered.asm.mixin.transformer.ext.IExtension;
 import org.spongepowered.asm.mixin.transformer.ext.ITargetClassContext;
 
-import java.util.List;
-
 public class MixinPlugin extends ModuleMixinPlugin {
-
-    // SJhub start - thanks for Arclight
-    private final List<MixinProcessor> postProcessors = List.of(
-            new TransformAccessProcessor()
-    );
-    // SJhub end - thanks for Arclight
 
     @Override
     public void onLoad(String mixinPackage) {
@@ -61,11 +50,5 @@ public class MixinPlugin extends ModuleMixinPlugin {
 
     @Override
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
-        // SJhub start - thanks for Arclight
-        for (var processor : this.postProcessors) {
-            processor.accept(targetClassName, targetClass, mixinInfo);
-        }
-        MixinTools.onPostMixin(targetClass);
-        // SJhub end - thanks for Arclight
     }
 }
