@@ -3,6 +3,7 @@
   "required": true,
   "package": "com.ishland.c2me.notickvd.mixin",
   "plugin": "com.ishland.c2me.base.common.ModuleMixinPlugin",
+  "refmap": "c2me_notickvd.refmap.json",
   "mixins": [
     "MixinChunkHolder",
     "MixinChunkTicketManager",
