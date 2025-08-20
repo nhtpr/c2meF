@@ -70,8 +70,9 @@ public abstract class MixinThreadedAnvilChunkStorage {
      * @author ishland
      * @reason dont send chunks twice
      */
-    @Overwrite
-    private void lambda$prepareTickingChunk$44(MutableObject<ClientboundLevelChunkWithLightPacket> mutableObject, LevelChunk worldChunk, ServerPlayer player) {
+    @Dynamic
+    @Overwrite(remap = false)
+    private void m_214908_(MutableObject<ClientboundLevelChunkWithLightPacket> mutableObject, LevelChunk worldChunk, ServerPlayer player) {
         if (Config.ensureChunkCorrectness && NoTickChunkSendingInterceptor.onChunkSending(player, worldChunk.getPos().toLong()))
             this.playerLoadedChunk(player, mutableObject, worldChunk);
     }
