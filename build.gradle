@@ -189,7 +189,8 @@ def moduleProjects = [
         ':c2me_fixes_general_threading_issues',
         ':c2me_fixes_worldgen_threading_issues',
         ':c2me_notickvd',
-        ':c2me_opts_allocs'
+        ':c2me_opts_allocs',
+        ':c2me_opts_chunk_access'
 ]
 
 dependencies {
