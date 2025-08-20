@@ -29,6 +29,8 @@ static def moduleDependencies(project, List<String> depNames) {
     }
 }
 
+jarJar.enable()
+
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.gradleup.shadow'
 
