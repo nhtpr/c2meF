@@ -1,0 +1,12 @@
+{
+  "parent": "c2me.mixins.json",
+  "required": true,
+  "package": "com.ishland.c2me.opts.worldgen.vanilla.mixin",
+  "plugin": "com.ishland.c2me.opts.worldgen.vanilla.MixinPlugin",
+  "refmap": "c2me_opts_worldgen_vanilla.refmap.json",
+  "mixins": [
+    "aquifer.MixinAquiferSamplerImpl",
+    "aquifer.MixinNoiseChunkGenerator",
+    "the_end_biome_cache.MixinTheEndBiomeSource"
+  ]
+}
