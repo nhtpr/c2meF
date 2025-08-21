@@ -1,6 +1,7 @@
 package com.ishland.c2me.threading.chunkio;
 
 import com.ishland.c2me.base.common.ModuleMixinPlugin;
+import net.sjhub.c2me.utils.ModUtil;
 
 public class MixinPlugin extends ModuleMixinPlugin {
 
@@ -9,8 +10,7 @@ public class MixinPlugin extends ModuleMixinPlugin {
         if (!super.shouldApplyMixin(targetClassName, mixinClassName)) return false;
 
         if (mixinClassName.startsWith("com.ishland.c2me.threading.chunkio.mixin.gc_free_serializer.")) {
-            return true;
-            // return FabricLoader.getInstance().isModLoaded("c2me-rewrites-chunk-serializer"); // SJhub - find better way than ModList.get()
+            return ModUtil.isModLoaded("c2me_rewrites_chunk_serializer");
         }
 
         return true;

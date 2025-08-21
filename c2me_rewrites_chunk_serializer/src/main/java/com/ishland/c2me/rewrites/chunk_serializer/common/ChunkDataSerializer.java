@@ -67,6 +67,7 @@ import net.minecraft.world.ticks.SavedTick;
 import net.minecraft.world.ticks.ScheduledTick;
 import net.minecraft.world.ticks.SerializableTickContainer;
 import net.minecraft.world.ticks.TickPriority;
+import net.sjhub.c2me.utils.ModUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Contract;
@@ -156,7 +157,7 @@ public final class ChunkDataSerializer {
     private static final int STARLIGHT_LIGHT_VERSION = 8;
 
     // TODO: validating starlight compatibility?
-    private static final boolean STARLIGHT = false;// FabricLoader.getInstance().isModLoaded("starlight"); // TODO: find better way then ModList.get()
+    private static final boolean STARLIGHT = ModUtil.isModLoaded("starlight");
 
     /**
      * Mirror of {@link ChunkSerializer#write(ServerLevel, ChunkAccess)}

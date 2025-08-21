@@ -3,10 +3,10 @@ package com.ishland.c2me.base.common.config;
 import com.electronwill.nightconfig.core.CommentedConfig;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.ishland.c2me.base.common.util.BooleanUtils;
-import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.forgespi.language.IModInfo;
+import net.sjhub.c2me.utils.ModUtil;
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.slf4j.Logger;
@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ConfigSystem {
@@ -97,29 +96,27 @@ public class ConfigSystem {
             return this;
         }
 
-        // TODO: find better way then Modlist.get()
         public ConfigAccessor incompatibleMod(String modId, String predicate) {
+            // SJhub start - rewrite find incompatible mod
             try {
-                // SJhub start
-                if (ModList.get() == null) {
+                if (!ModUtil.isModLoaded(modId)) {
                     return this;
                 }
-                // SJhub end
-                final Optional<? extends IModInfo> optional = ModList.get().getModContainerById(modId).map(ModContainer::getModInfo);
-                if (optional.isPresent()) {
-                    final IModInfo modInfo = optional.get();
-                    final ArtifactVersion version = modInfo.getVersion();
 
-                    final VersionRange versionRange = VersionRange.createFromVersionSpec(predicate);
-                    if (versionRange.containsVersion(version)) {
-                        final String reason = String.format("Incompatible with %s@%s (%s) (defined in c2me)", modId, version.toString(), predicate);
-                        disableConfigWithReason(reason);
-                    }
+                VersionRange versionRange = VersionRange.createFromVersionSpec(predicate);
+                ArtifactVersion version = ModUtil.getModVersion(modId);
+
+                if (versionRange.containsVersion(version)) {
+                    String reason = String.format("Incompatible with %s@%s (%s) (defined in c2me)", modId, version.toString(), predicate);
+                    disableConfigWithReason(reason);
                 }
+
             } catch (Throwable t) {
                 throw new IllegalArgumentException(t);
             }
+
             return this;
+            // SJhub end - rewrite find incompatible mod
         }
 
         public long getLong(long def, long incompatibleDef, LongChecks... checks) {
@@ -242,13 +239,7 @@ public class ConfigSystem {
         }
 
         private void findModDefinedIncompatibility() {
-            // SJhub start
-            if (ModList.get() == null) {
-                return;
-            }
-            try {
-            // SJhub end
-            for (IModInfo modInfo : ModList.get().getMods()) {
+            for (IModInfo modInfo : ModUtil.getModInfoList()) {
                 Object incompatibilitiesValue = modInfo.getModProperties().get("c2me:incompatibleConfig");
                 if (incompatibilitiesValue instanceof java.util.List) {
                     @SuppressWarnings("unchecked")
@@ -262,11 +253,6 @@ public class ConfigSystem {
                     }
                 }
             }
-            // SJhub start
-            } catch (Throwable t) {
-                LOGGER.warn("Failed to check mod-defined incompatibilities, skipping", t);
-            }
-            // SJhub end
 
         }
 

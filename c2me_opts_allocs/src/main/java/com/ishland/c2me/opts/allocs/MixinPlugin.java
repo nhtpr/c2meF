@@ -2,26 +2,25 @@ package com.ishland.c2me.opts.allocs;
 
 import com.ishland.c2me.base.common.ModuleMixinPlugin;
 import net.minecraftforge.fml.ModList;
+import net.sjhub.c2me.utils.ModUtil;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 public class MixinPlugin extends ModuleMixinPlugin {
 
-    // TODO: find better way then Modlist.get()
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!super.shouldApplyMixin(targetClassName, mixinClassName)) return false;
-        if (ModList.get() == null) return true;
 
         if (mixinClassName.equals("com.ishland.c2me.opts.allocs.mixin.MixinNbtCompound") ||
                 mixinClassName.equals("com.ishland.c2me.opts.allocs.mixin.MixinNbtCompound1"))
-            return !ModList.get().isLoaded("lithium") &&
-                    !ModList.get().isLoaded("radium") &&
-                    !ModList.get().isLoaded("canary");
+            return !ModUtil.isModLoaded("lithium") &&
+                    !ModUtil.isModLoaded("radium") &&
+                    !ModUtil.isModLoaded("canary");
 
         if (mixinClassName.startsWith("com.ishland.c2me.opts.allocs.mixin.surfacebuilder.")) {
-            return !ModList.get().isLoaded("quilted_fabric_api") &&
-                   !ModList.get().isLoaded("frozenlib");
+            return !ModUtil.isModLoaded("quilted_fabric_api") &&
+                   !ModUtil.isModLoaded("frozenlib");
         }
 
         return true;
