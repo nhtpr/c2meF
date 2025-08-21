@@ -4,7 +4,6 @@ package com.ishland.c2me.threading.worldgen.common.debug;
 import com.google.common.collect.Sets;
 import com.ishland.c2me.threading.worldgen.common.Config;
 import com.mojang.logging.LogUtils;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.BlockCollisions;
 import net.minecraft.world.level.LevelReader;
@@ -47,20 +46,13 @@ public class StacktraceRecorder {
 
     public static class StacktraceHolder {
 
-        private static final String StructureProcessor$process = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_3491", "method_15110", "(Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Lnet/minecraft/class_3499$class_3501;Lnet/minecraft/class_3499$class_3501;Lnet/minecraft/class_3492;)Lnet/minecraft/class_3499$class_3501;");
-        private static final String BlendingData$getBlendingData = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_6749", "method_39570", "(Lnet/minecraft/class_3233;II)Lnet/minecraft/class_6749;");
-        private static final String ChunkGenerator$carve = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_2794", "method_12108", "(Lnet/minecraft/class_3233;JLnet/minecraft/class_7138;Lnet/minecraft/class_4543;Lnet/minecraft/class_5138;Lnet/minecraft/class_2791;Lnet/minecraft/class_2893$class_2894;)V");
-        private static final String SpawnHelper$populateEntities = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_1948", "method_8661", "(Lnet/minecraft/class_5425;Lnet/minecraft/class_1959;Lnet/minecraft/class_1923;Ljava/util/Random;)V");
-        private static final String StructureAccessor$method_41032 = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_5138", "method_41032", "(Lnet/minecraft/class_4076;Lnet/minecraft/class_5312;)Ljava/util/List;");
-        private static final String BiomeAccess$Storage$getBiomeForNoiseGen = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_4543$class_4544", "method_16359", "(III)Lnet/minecraft/class_6880;");
-        private static final String BlockCollisionSpliterator$getChunk = FabricLoader.getInstance().getMappingResolver()
-                .mapMethodName("intermediary", "net.minecraft.class_5329", "method_29283", "(II)Lnet/minecraft/class_1922;");
+        private static final String StructureProcessor$process = "m_7382_"; // processBlock
+        private static final String BlendingData$getBlendingData = "m_190304_"; // getOrUpdateBlendingData
+        private static final String ChunkGenerator$carve = "m_213679_"; // applyCarvers
+        private static final String SpawnHelper$populateEntities = "m_220450_"; // spawnMobsForChunkGeneration
+        private static final String StructureAccessor$method_41032 = "m_220480_"; // fillStartsForStructure
+        private static final String BiomeAccess$Storage$getBiomeForNoiseGen = "m_203495_"; // getNoiseBiome
+        private static final String BlockCollisionSpliterator$getChunk = "m_186411_"; // getChunk
 
         @NotNull
         private final StackTraceElement[] stackTrace;
@@ -73,7 +65,7 @@ public class StacktraceRecorder {
 
         public boolean needPrint() {
             for (StackTraceElement stackTraceElement : stackTrace) {
-                if (stackTraceElement.getMethodName().equals("method_26971"))
+                if (stackTraceElement.getMethodName().equals("method_26971")) // TODO: what is this?
                     return false;
                 if (stackTraceElement.getClassName().equals(RuleProcessor.class.getName()) &&
                         stackTraceElement.getMethodName().equals(StructureProcessor$process))
