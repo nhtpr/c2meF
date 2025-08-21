@@ -1,0 +1,17 @@
+{
+  "parent": "c2me.mixins.json",
+  "required": true,
+  "package": "com.ishland.c2me.threading.chunkio.mixin",
+  "plugin": "com.ishland.c2me.base.common.ModuleMixinPlugin",
+  "refmap": "c2me_threading_chunkio.refmap.json",
+  "mixins": [
+    "MixinBlender",
+    "MixinChunkRegion",
+    "MixinChunkSerializer",
+    "MixinProtoChunk",
+    "MixinSerializingRegionBasedStorage",
+    "MixinStorageIoWorker",
+    "MixinThreadedAnvilChunkStorage",
+    "gc_free_serializer.MixinChunkDataSerializer"
+  ]
+}
