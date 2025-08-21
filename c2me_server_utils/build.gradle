@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+base {
+    archivesName = "${mod_id}-server-utils-mc${minecraft_version}-${mod_version}"
+}
+
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    copyIdeResources = true
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+}
+
+mixin {
+    add sourceSets.main, "c2me_server_utils.refmap.json"
+    config "c2me_server_utils.mixins.json"
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    api project(":c2me_base")
+    api project(":c2me_notickvd")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+                             forge_version       : forge_version, forge_version_range: forge_version_range,
+                             loader_version_range: loader_version_range,
+                             mod_id              : "c2me_server_utils", mod_name: "Concurrent Chunk Management Engine (Server Utils)", mod_license: mod_license, mod_version: mod_version,
+                             mod_authors         : mod_authors, mod_description: "Some server-side utilities",]
+
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}

@@ -197,7 +197,8 @@ def moduleProjects = [
         ':c2me_opts_worldgen_general',
         ':c2me_opts_worldgen_vanilla',
         ':c2me_rewrites_chunk_serializer',
-        ':c2me_rewrites_chunkio'
+        ':c2me_rewrites_chunkio',
+        ':c2me_server_utils'
 ]
 
 dependencies {
