@@ -6,5 +6,5 @@ import net.sjhub.c2me.utils.ModUtil;
 @Mod("c2me_threading_lighting")
 public class ModuleEntryPoint {
 
-    private static final boolean enabled = ModUtil.isModLoaded("lightbench");
+    private static final boolean enabled = !ModUtil.isModLoaded("lightbench");
 }
