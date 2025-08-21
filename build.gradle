@@ -199,7 +199,8 @@ def moduleProjects = [
         ':c2me_rewrites_chunk_serializer',
         ':c2me_rewrites_chunkio',
         ':c2me_server_utils',
-        ':c2me_threading_chunkio'
+        ':c2me_threading_chunkio',
+        ':c2me_threading_lighting'
 ]
 
 dependencies {

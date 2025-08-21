@@ -37,17 +37,3 @@ license="${mod_license}"
     versionRange="*"
     ordering="NONE"
     side="BOTH"
-
-[[dependencies."${mod_id}"]]
-    modId="c2me_fixes_worldgen_threading_issues"
-    mandatory=true
-    versionRange="*"
-    ordering="NONE"
-    side="BOTH"
-
-[[dependencies."${mod_id}"]]
-    modId="c2me_fixes_worldgen_vanilla_bugs"
-    mandatory=true
-    versionRange="*"
-    ordering="NONE"
-    side="BOTH"

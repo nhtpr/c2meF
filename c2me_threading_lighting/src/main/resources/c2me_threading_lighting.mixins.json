@@ -1,0 +1,11 @@
+{
+  "parent": "c2me.mixins.json",
+  "required": true,
+  "package": "com.ishland.c2me.threading.lighting.mixin",
+  "plugin": "com.ishland.c2me.base.common.ModuleMixinPlugin",
+  "refmap": "c2me_threading_lighting.refmap.json",
+  "mixins": [
+    "MixinServerLightingProvider",
+    "MixinThreadedAnvilChunkStorage"
+  ]
+}
