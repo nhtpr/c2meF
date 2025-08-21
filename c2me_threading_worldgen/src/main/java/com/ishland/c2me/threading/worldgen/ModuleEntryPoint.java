@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import static com.ishland.c2me.base.ModuleEntryPoint.globalExecutorParallelism;
 
 @Mod("c2me_threading_worldgen")
-class ModuleEntryPoint {
+public class ModuleEntryPoint {
 
     public static final boolean enabled = new ConfigSystem.ConfigAccessor()
             .key("threadedWorldGen.enabled")

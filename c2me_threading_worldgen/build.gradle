@@ -36,7 +36,6 @@ dependencies {
 
     api project(":c2me_base")
     api project(":c2me_opts_chunk_access")
-    api project(":c2me_fixes_general_threading_issues")
 }
 
 java {

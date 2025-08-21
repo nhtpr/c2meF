@@ -35,7 +35,6 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     api project(":c2me_base")
-    api project(":c2me_rewrites_chunk_serializer")
 }
 
 java {
