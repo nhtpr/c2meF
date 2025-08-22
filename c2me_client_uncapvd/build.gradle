@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'org.spongepowered.mixin'
 
 base {
-    archivesName = "${mod_id}-client-uncapvd-mc${minecraft_version}-${mod_version}"
+    archivesName = "${mod_id}F-client-uncapvd-mc${minecraft_version}-${mod_version}"
 }
 
 minecraft {

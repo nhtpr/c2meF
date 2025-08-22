@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'org.spongepowered.mixin'
 
 base {
-    archivesName = "${mod_id}-server-utils-mc${minecraft_version}-${mod_version}"
+    archivesName = "${mod_id}F-server-utils-mc${minecraft_version}-${mod_version}"
 }
 
 minecraft {
